@@ -83,6 +83,7 @@ static const char* getNodeColor(const NodeType type){
     return NULL;
 }
 
+
 static const char* getOpNodeValueForPicture(const double value){
 
     switch((int)value){
@@ -90,12 +91,27 @@ static const char* getOpNodeValueForPicture(const double value){
         case ADD: return "+";
         case SUB: return "-";
         case MUL: return "*";
-        case DIV: return "\\";
-        default: return NULL;
-    }
+        case DIV: return "/";
 
-    return NULL;
+        case SIN: return "sin";
+        case COS: return "cos";
+        case TG:  return "tg";
+        case CTG: return "ctg";
+        case LN:  return "ln";
+        case EXP: return "exp";
+
+        case POW:    return "^";
+        case LOG:    return "log";
+
+        case ARCSIN: return "arcsin";
+        case ARCCOS: return "arccos";
+        case ARCTG:  return "arctg";
+        case ARCCTG: return "arcctg";
+
+        default: return "UNKNOWN";
+    }
 }
+
 
 static const char* getNodeForPicture(const NodeType type){
 

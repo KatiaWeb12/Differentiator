@@ -5,7 +5,6 @@ static ErrorCode createTreeNode(BinaryTree_t* binaryTree,
                                 Node** newNode);
 static ErrorCode allocateMemoryForNode(Node** treeNode);
 static ErrorCode formBinaryTree(BinaryTree_t* binaryTree, char* treeText);
-static ErrorCode writeTreeNode(FILE* file, const Node* node);
 static void destroyTreeNode(Node* node);
 static ErrorCode formAfterOpenedBracket(BinaryTree_t* binaryTree, char** current, Node** currentNode);
 static ErrorCode verifyNode(const Node* node,
@@ -14,6 +13,9 @@ static ErrorCode verifyNode(const Node* node,
                        size_t* count,
                        const char* function,
                        int line);
+static const char* getTexInstruction(const double value);
+static bool isOpUnary(const double value);
+static bool operationRecognition(const char* start, NodeType* type, double* value);
 
 
 void initBinaryTree(BinaryTree_t* binaryTree){
@@ -147,14 +149,15 @@ static ErrorCode formAfterOpenedBracket(BinaryTree_t* binaryTree, char** current
 
         type = MY_CONST;
     }
+
     else if (length == 1 && (*start == '+' || *start == '-' || *start == '*' || *start == '/')){
 
         type = OP;
         value = *start;
     }
-    else{
-        type = VAR;
+    else if(!operationRecognition(start, &type, &value)){
 
+        type = VAR;
         size_t index = 0;
 
         while (index < variables.variablesCount && strcmp(variables.varArr[index], start) != 0) index++;
@@ -197,6 +200,119 @@ static ErrorCode formAfterOpenedBracket(BinaryTree_t* binaryTree, char** current
 
 }
 
+static bool operationRecognition(const char* start, NodeType* type, double* value){
+
+    if (strcmp(start, "sin") == 0){
+
+        *type = OP;
+        *value = SIN;
+
+        return true;
+    }
+    else if (strcmp(start, "cos") == 0){
+
+        *type = OP;
+        *value = COS;
+
+        return true;
+    }
+    else if (strcmp(start, "tg") == 0){
+
+        *type = OP;
+        *value = TG;
+
+        return true;
+    }
+    else if (strcmp(start, "ctg") == 0){
+
+        *type = OP;
+        *value = CTG;
+
+        return true;
+    }
+    else if (strcmp(start, "ln") == 0){
+
+        *type = OP;
+        *value = LN;
+
+        return true;
+    }
+    else if (strcmp(start, "exp") == 0){
+
+        *type = OP;
+        *value = EXP;
+
+        return true;
+    }
+    else if(strcmp(start, "^") == 0){
+
+        *type = OP;
+        *value = POW;
+
+        return true;
+    }
+    else if(strcmp(start, "log") == 0){
+
+        *type = OP;
+        *value = LOG;
+
+        return true;
+    }
+    else if(strcmp(start, "arcsin") == 0){
+
+        *type = OP;
+        *value = ARCSIN;
+
+        return true;
+    }
+    else if(strcmp(start, "arccos") == 0){
+
+        *type = OP;
+        *value = ARCCOS;
+
+        return true;
+    }
+    else if(strcmp(start, "arctg") == 0){
+
+        *type = OP;
+        *value = ARCTG;
+
+        return true;
+    }
+    else if(strcmp(start, "arcctg") == 0){
+
+        *type = OP;
+        *value = ARCCTG;
+
+        return true;
+    }
+
+    return false;
+}
+
+static bool isOpUnary(const double value){
+
+    switch((int)value){
+
+        case SIN:
+        case COS:
+        case TG:
+        case CTG:
+        case LN:
+        case EXP:
+
+        case ARCSIN:
+        case ARCCOS:
+        case ARCTG:
+        case ARCCTG:
+
+            return true;
+
+        default:
+            return false;
+    }
+}
+
 static ErrorCode createTreeNode(BinaryTree_t* binaryTree,
                                 Node** currentNode,
                                 NodeType type,
@@ -218,13 +334,34 @@ static ErrorCode createTreeNode(BinaryTree_t* binaryTree,
     else{
         (*newNode)->parent = *currentNode;
 
-        if((*newNode)->parent->left == NULL){
+        Node* parent = *currentNode;
+        bool isUnary = parent->type == OP && isOpUnary(parent->value);
 
-            (*newNode)->parent->left = *newNode;
+        if(isUnary && parent->left != NULL){
+
+            error_debug debugLogInfo = {};
+            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                                "Not NULL Left node in unary-op-node",
+                                ERR_INVALID_ARGUMENT);
+            printErrorIntoConsole(&debugLogInfo);
+            return ERR_INVALID_ARGUMENT;
         }
-        else if((*newNode)->parent->right == NULL){
+        else if(parent->left == NULL){
 
-            (*newNode)->parent->right = *newNode;
+            parent->left = *newNode;
+        }
+
+        else if(parent->right == NULL && !isUnary){
+
+            parent->right = *newNode;
+        }
+        else{
+            error_debug debugLogInfo = {};
+            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                                "Incorrect node-type",
+                                ERR_INVALID_ARGUMENT);
+            printErrorIntoConsole(&debugLogInfo);
+            return ERR_INVALID_ARGUMENT;
         }
 
     }
@@ -250,89 +387,273 @@ static ErrorCode allocateMemoryForNode(Node** treeNode){
     return ERR_OK;
 }
 
-ErrorCode writeBinaryTree(BinaryTree_t* binaryTree, const char* fileName){
+ErrorCode writeBinaryTree(BinaryTree_t* binaryTree, FILE* file, const bool isAnswer){
 
     assert(binaryTree);
-    assert(fileName);
+    assert(file);
 
     VERIFY_OK(binaryTree, __func__);
 
-    FILE* file = fopen(fileName, "w");
-    if (file == NULL) {
-        error_debug debugLogInfo = {};
-        ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__, "File-problem", ERR_FILE_NOT_FOUND);
-        printErrorIntoConsole(&debugLogInfo);
-        printf("Cannot open file: %s\n", fileName);
+    fprintf(file, "\\[\n");
 
-        return ERR_FILE_NOT_FOUND;
-    }
+    if(isAnswer) fprintf(file, "\\boxed{\n");
 
-    ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    ErrorCode error  = writeTreeNode(file, binaryTree->root, 0, 0, false);
     if(error != ERR_OK) return error;
 
-    FCLOSE(file);
+    if(isAnswer) fprintf(file, "\n}\n");
+
+    fprintf(file, "\\]\n");
 
     return ERR_OK;
 }
 
-static ErrorCode writeTreeNode(FILE* file, const Node* node){
+ErrorCode writeTreeNode(FILE* file, const Node* node, int parentPrecedence, int parentOperation, bool isRightChild){
 
     assert(file);
     assert(node);
 
-    fprintf(file, "(");
-
-    if (node->type == MY_CONST){
+    if(node->type == MY_CONST){
 
         fprintf(file, "%g", node->value);
+        return ERR_OK;
     }
 
-    else if (node->type == VAR){
+    if(node->type == VAR){
 
         size_t index = (size_t)node->value;
 
-        if (index >= variables.variablesCount){
+        if(index >= variables.variablesCount){
             error_debug debugLogInfo = {};
-            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__, "", ERR_FILE_NOT_FOUND);
+            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                                "Incorrect node-type",
+                                ERR_INVALID_ARGUMENT);
             printErrorIntoConsole(&debugLogInfo);
             return ERR_INVALID_ARGUMENT;
         }
 
         fprintf(file, "%s", variables.varArr[index]);
+        return ERR_OK;
     }
 
-    else if (node->type == OP){
-
-        fprintf(file, "%c", (char)node->value);
-
-        if (node->left == NULL || node->right == NULL){
-            error_debug debugLogInfo = {};
-            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__, "", ERR_FILE_NOT_FOUND);
-            printErrorIntoConsole(&debugLogInfo);
-            return ERR_INVALID_ARGUMENT;
-        }
-
-        fprintf(file, " ");
-
-        ErrorCode error = writeTreeNode(file, node->left);
-        if (error != ERR_OK) return error;
-
-        fprintf(file, " ");
-
-        error = writeTreeNode(file, node->right);
-        if (error != ERR_OK) return error;
-    }
-
-    else{
+    if(node->type != OP){
         error_debug debugLogInfo = {};
-        ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__, "Incorrect type of Node", ERR_FILE_NOT_FOUND);
+        ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                            "Incorrect node-type",
+                            ERR_INVALID_ARGUMENT);
         printErrorIntoConsole(&debugLogInfo);
         return ERR_INVALID_ARGUMENT;
     }
 
-    fprintf(file, ")");
+    const char* functionName = getTexInstruction(node->value);
+
+    if(functionName == NULL){
+        error_debug debugLogInfo = {};
+        ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                            "Incorrect node-type",
+                            ERR_INVALID_ARGUMENT);
+        printErrorIntoConsole(&debugLogInfo);
+        return ERR_INVALID_ARGUMENT;
+    }
+
+    if(isOpUnary(node->value)){
+
+        if(node->left == NULL || node->right != NULL){
+            error_debug debugLogInfo = {};
+            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                                "Incorrect node-type",
+                                ERR_INVALID_ARGUMENT);
+            printErrorIntoConsole(&debugLogInfo);
+            return ERR_INVALID_ARGUMENT;
+        }
+
+        fprintf(file, "%s(", functionName);
+
+        ErrorCode error = writeTreeNode(file, node->left, 0, 0, false);
+
+        if(error != ERR_OK) return error;
+
+        fprintf(file, ")");
+
+        return ERR_OK;
+    }
+
+    if(node->left == NULL || node->right == NULL){
+        error_debug debugLogInfo = {};
+        ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                            "Incorrect node-type",
+                            ERR_INVALID_ARGUMENT);
+        printErrorIntoConsole(&debugLogInfo);
+        return ERR_INVALID_ARGUMENT;
+    }
+
+    int precedence = getOperationPrecedence(node);
+
+    bool needParentheses = precedence < parentPrecedence;
+    int operation = (int)node->value;
+
+    if(isRightChild && precedence == parentPrecedence){
+
+        // a - (b + c)
+        // a - (b - c)
+        if(parentOperation == SUB && (operation == ADD || operation == SUB)){
+
+            needParentheses = true;
+        }
+
+        // a * (b / c)
+        if(parentOperation == MUL && operation == DIV){
+
+            needParentheses = true;
+        }
+
+        // a / (b * c)
+        // a / (b / c)
+        if(parentOperation == DIV && (operation == MUL || operation == DIV)){
+
+            needParentheses = true;
+        }
+    }
+
+    if(needParentheses) fprintf(file, "(");
+
+    if((int)node->value == DIV){
+
+        fprintf(file, "\\frac{");
+
+        ErrorCode error = writeTreeNode(file, node->left, 0, 0, false);
+        if(error != ERR_OK) return error;
+
+        fprintf(file, "}{");
+
+        error = writeTreeNode(file, node->right, 0, 0, false);
+        if(error != ERR_OK) return error;
+
+        fprintf(file, "}");
+    }
+
+    else if((int)node->value == MUL){
+
+        // -1 * x = -x
+
+        if(node->left->type == MY_CONST && (int)node->left->value == -1){
+
+            fprintf(file, "-");
+
+            ErrorCode error = writeTreeNode(file, node->right, precedence, MUL, true);
+            if(error != ERR_OK) return error;
+        }
+        else if(node->right->type == MY_CONST && (int)node->right->value == -1){
+
+            fprintf(file, "-");
+
+            ErrorCode error = writeTreeNode(file, node->left, precedence, MUL, false);
+            if(error != ERR_OK) return error;
+        }
+        else{
+
+            ErrorCode error = writeTreeNode(file, node->left, precedence, MUL, false);
+            if(error != ERR_OK) return error;
+
+            fprintf(file, " \\cdot ");
+
+            error = writeTreeNode(file, node->right, precedence, MUL, true);
+            if(error != ERR_OK) return error;
+        }
+    }
+
+    else if((int)node->value == POW){
+
+        if(node->left == NULL || node->right == NULL){
+            error_debug debugLogInfo = {};
+            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                                "Incorrect node-type",
+                                ERR_INVALID_ARGUMENT);
+            printErrorIntoConsole(&debugLogInfo);
+            return ERR_INVALID_ARGUMENT;
+        }
+
+        fprintf(file, "{");
+
+        ErrorCode error = writeTreeNode(file, node->left, 0, 0, false);
+        if(error != ERR_OK) return error;
+
+        fprintf(file, "}^{");
+
+        error = writeTreeNode(file, node->right, 0, 0, false);
+        if(error != ERR_OK) return error;
+
+        fprintf(file, "}");
+
+        return ERR_OK;
+    }
+
+    else if((int)node->value == LOG){
+
+        if(node->left == NULL || node->right == NULL){
+            error_debug debugLogInfo = {};
+            ERROR_STRUCT_FORMAT(&debugLogInfo, __func__, __LINE__,
+                                "Incorrect node-type",
+                                ERR_INVALID_ARGUMENT);
+            printErrorIntoConsole(&debugLogInfo);
+            return ERR_INVALID_ARGUMENT;
+        }
+
+        fprintf(file, "\\log_{");
+
+        ErrorCode error = writeTreeNode(file, node->left, 0, 0, false);
+        if(error != ERR_OK) return error;
+
+        fprintf(file, "}(");
+
+        error = writeTreeNode(file, node->right, 0, 0, false);
+        if(error != ERR_OK) return error;
+
+        fprintf(file, ")");
+
+        return ERR_OK;
+    }
+    else{
+
+        ErrorCode error = writeTreeNode(file, node->left, precedence, (int)node->value, false);
+        if(error != ERR_OK) return error;
+
+        fprintf(file, " %s ", functionName);
+
+        error = writeTreeNode(file, node->right, precedence, (int)node->value, true);
+        if(error != ERR_OK) return error;
+    }
+
+    if(needParentheses) fprintf(file, ")");
 
     return ERR_OK;
+}
+
+static const char* getTexInstruction(const double value){
+
+    switch((int)value){
+
+        case ADD: return "+";
+        case SUB: return "-";
+        case MUL: return "\\cdot";
+        case DIV: return "\\over";
+        case SIN: return "\\sin";
+        case COS: return "\\cos";
+        case TG:  return "\\tan";
+        case CTG: return "\\cot";
+        case LN:  return "\\ln";
+        case EXP: return "\\exp";
+        case POW:    return "^";
+        case LOG:    return "\\log";
+
+        case ARCSIN: return "\\arcsin";
+        case ARCCOS: return "\\arccos";
+        case ARCTG:  return "\\arctan";
+        case ARCCTG: return "\\operatorname{arcctg}";
+        default: return NULL;
+    }
+
+    return NULL;
 }
 
 void destroyBinaryTree(BinaryTree_t* binaryTree){

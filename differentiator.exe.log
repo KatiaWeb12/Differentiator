@@ -588,3 +588,885 @@ Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator
 Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00436C33 в функции writeTreeNode() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp на строке 284. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x3C50 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00436C33 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:284:
+
+    282:     assert(node);
+    283: 
+=>  284:     if(node->parent->type == OP) fprintf(file, "{");
+    285: 
+    286:     if (node->type == MY_CONST){
+
+# 1 0x00436BA6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:271:
+
+    269:     }
+    270: 
+=>  271:     ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    272:     if(error != ERR_OK) return error;
+    273: 
+
+# 2 0x00437C5D in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:38:
+
+     36:     diffTree.root = diffTreeRoot;
+     37: 
+=>   38:     error = writeBinaryTree(&diffTree, usedFiles.resultFile);
+     39: 
+     40:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 15:35:59, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 15:36:01
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00436C33 в функции writeTreeNode() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp на строке 284. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x3C50 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00436C33 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:284:
+
+    282:     assert(node);
+    283: 
+=>  284:     if(node->parent->type == OP) fprintf(file, "{");
+    285: 
+    286:     if (node->type == MY_CONST){
+
+# 1 0x00436BA6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:271:
+
+    269:     }
+    270: 
+=>  271:     ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    272:     if(error != ERR_OK) return error;
+    273: 
+
+# 2 0x00437C5D in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:38:
+
+     36:     diffTree.root = diffTreeRoot;
+     37: 
+=>   38:     error = writeBinaryTree(&diffTree, usedFiles.resultFile);
+     39: 
+     40:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 15:35:59, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 15:36:01
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00436C33 в функции writeTreeNode() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp на строке 284. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x2B68 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00436C33 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:284:
+
+    282:     assert(node);
+    283: 
+=>  284:     if(node->parent->type == OP && (node->parent->type == OP && (int)node->parent->value == DIV)) fprintf(file, "{");
+    285: 
+    286:     if (node->type == MY_CONST){
+
+# 1 0x00436BA6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:271:
+
+    269:     }
+    270: 
+=>  271:     ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    272:     if(error != ERR_OK) return error;
+    273: 
+
+# 2 0x00437CC5 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:38:
+
+     36:     diffTree.root = diffTreeRoot;
+     37: 
+=>   38:     error = writeBinaryTree(&diffTree, usedFiles.resultFile);
+     39: 
+     40:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 15:37:41, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 15:37:44
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00436C33 в функции writeTreeNode() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp на строке 284. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x2B68 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00436C33 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:284:
+
+    282:     assert(node);
+    283: 
+=>  284:     if(node->parent->type == OP && (node->parent->type == OP && (int)node->parent->value == DIV)) fprintf(file, "{");
+    285: 
+    286:     if (node->type == MY_CONST){
+
+# 1 0x00436BA6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:271:
+
+    269:     }
+    270: 
+=>  271:     ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    272:     if(error != ERR_OK) return error;
+    273: 
+
+# 2 0x00437CC5 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:38:
+
+     36:     diffTree.root = diffTreeRoot;
+     37: 
+=>   38:     error = writeBinaryTree(&diffTree, usedFiles.resultFile);
+     39: 
+     40:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 15:37:41, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 15:37:44
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00436C33 в функции writeTreeNode() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp на строке 284. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x3668 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00436C33 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:284:
+
+    282:     assert(node);
+    283: 
+=>  284:     if(node->parent->type == OP && (int)node->parent->value == DIV) fprintf(file, "{");
+    285: 
+    286:     if (node->type == MY_CONST){
+
+# 1 0x00436BA6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:271:
+
+    269:     }
+    270: 
+=>  271:     ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    272:     if(error != ERR_OK) return error;
+    273: 
+
+# 2 0x00437CAB in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:38:
+
+     36:     diffTree.root = diffTreeRoot;
+     37: 
+=>   38:     error = writeBinaryTree(&diffTree, usedFiles.resultFile);
+     39: 
+     40:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 15:38:34, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 15:38:37
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00436C33 в функции writeTreeNode() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp на строке 284. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x3668 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00436C33 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:284:
+
+    282:     assert(node);
+    283: 
+=>  284:     if(node->parent->type == OP && (int)node->parent->value == DIV) fprintf(file, "{");
+    285: 
+    286:     if (node->type == MY_CONST){
+
+# 1 0x00436BA6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:271:
+
+    269:     }
+    270: 
+=>  271:     ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    272:     if(error != ERR_OK) return error;
+    273: 
+
+# 2 0x00437CAB in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:38:
+
+     36:     diffTree.root = diffTreeRoot;
+     37: 
+=>   38:     error = writeBinaryTree(&diffTree, usedFiles.resultFile);
+     39: 
+     40:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 15:38:34, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 15:38:37
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00437DB6 в функции Diff() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp на строке 60. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x2AE8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00437DB6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:60:
+
+     58:     assert(binaryTree);
+     59: 
+=>   60:     switch(node->type){
+     61: 
+     62:         case MY_CONST: return createNewDiffNode(binaryTree, MY_CONST, 0, NULL, NULL);
+
+# 1 0x00437E86 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:65:
+
+     63:         case VAR: return createNewDiffNode(binaryTree, MY_CONST, 1, NULL, NULL);
+     64:         case OP: switch((int)node->value){
+=>   65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+     67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+
+# 2 0x00437F32 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:67:
+
+     65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+=>   67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+     68:             case DIV: return _DIV(_SUB(_MUL(_DL, _CR), _MUL(_CL, _DR)), _MUL(_CR, _CR));
+     69:             default: return NULL;
+
+# 3 0x00437CD4 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:36:
+
+     34:     initBinaryTree(&diffTree);
+     35: 
+=>   36:     Node* diffTreeRoot = Diff(&diffTree, binaryTree.root);
+     37: 
+     38:     diffTree.root = diffTreeRoot;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 16:30:29, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 16:30:32
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00437DB6 в функции Diff() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp на строке 60. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x2AE8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00437DB6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:60:
+
+     58:     assert(binaryTree);
+     59: 
+=>   60:     switch(node->type){
+     61: 
+     62:         case MY_CONST: return createNewDiffNode(binaryTree, MY_CONST, 0, NULL, NULL);
+
+# 1 0x00437E86 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:65:
+
+     63:         case VAR: return createNewDiffNode(binaryTree, MY_CONST, 1, NULL, NULL);
+     64:         case OP: switch((int)node->value){
+=>   65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+     67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+
+# 2 0x00437F32 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:67:
+
+     65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+=>   67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+     68:             case DIV: return _DIV(_SUB(_MUL(_DL, _CR), _MUL(_CL, _DR)), _MUL(_CR, _CR));
+     69:             default: return NULL;
+
+# 3 0x00437CD4 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:36:
+
+     34:     initBinaryTree(&diffTree);
+     35: 
+=>   36:     Node* diffTreeRoot = Diff(&diffTree, binaryTree.root);
+     37: 
+     38:     diffTree.root = diffTreeRoot;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 16:30:29, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 16:30:32
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00437DB6 в функции Diff() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp на строке 60. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x32D8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00437DB6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:60:
+
+     58:     assert(binaryTree);
+     59: 
+=>   60:     switch(node->type){
+     61: 
+     62:         case MY_CONST: return createNewDiffNode(binaryTree, MY_CONST, 0, NULL, NULL);
+
+# 1 0x00437E86 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:65:
+
+     63:         case VAR: return createNewDiffNode(binaryTree, MY_CONST, 1, NULL, NULL);
+     64:         case OP: switch((int)node->value){
+=>   65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+     67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+
+# 2 0x00437F32 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:67:
+
+     65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+=>   67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+     68:             case DIV: return _DIV(_SUB(_MUL(_DL, _CR), _MUL(_CL, _DR)), _MUL(_CR, _CR));
+     69:             default: return NULL;
+
+# 3 0x00437CD4 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:36:
+
+     34:     initBinaryTree(&diffTree);
+     35: 
+=>   36:     Node* diffTreeRoot = Diff(&diffTree, binaryTree.root);
+     37: 
+     38:     diffTree.root = diffTreeRoot;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 16:30:29, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 16:30:41
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00437DB6 в функции Diff() в файле C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp на строке 60. Попытка прочесть данные по адресу NULL в модуле C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe. Спасибо _txUnhandledExceptionFilter(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00512374 (32-bit), Flags: Cmdre0, Thread: 0x32D8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00437DB6 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:60:
+
+     58:     assert(binaryTree);
+     59: 
+=>   60:     switch(node->type){
+     61: 
+     62:         case MY_CONST: return createNewDiffNode(binaryTree, MY_CONST, 0, NULL, NULL);
+
+# 1 0x00437E86 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:65:
+
+     63:         case VAR: return createNewDiffNode(binaryTree, MY_CONST, 1, NULL, NULL);
+     64:         case OP: switch((int)node->value){
+=>   65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+     67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+
+# 2 0x00437F32 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:67:
+
+     65:             case ADD: return _ADD(_DL, _DR);
+     66:             case SUB: return _SUB(_DL, _DR);
+=>   67:             case MUL: return _ADD(_MUL(_DL, _CR), _MUL(_CL, _DR));
+     68:             case DIV: return _DIV(_SUB(_MUL(_DL, _CR), _MUL(_CL, _DR)), _MUL(_CR, _CR));
+     69:             default: return NULL;
+
+# 3 0x00437CD4 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:36:
+
+     34:     initBinaryTree(&diffTree);
+     35: 
+=>   36:     Node* diffTreeRoot = Diff(&diffTree, binaryTree.root);
+     37: 
+     38:     diffTree.root = diffTreeRoot;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 19 2026 16:30:29, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 19 2026 16:30:41
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00513374 (32-bit), Flags: Cmdre0, Thread: 0x4F0 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00414FFE in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Kate/TX/TXLib.h:11343
+# 1 0x76B68F03 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x76B6D3CB in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76B69D47 in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00436F18 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:355:
+
+    353: 
+    354:     assert(file);
+=>  355:     assert(node);
+    356: 
+    357:     if(node->parent != NULL && node->parent->type == OP && (int)node->parent->value == DIV) fprintf(file, "{");
+
+# 5 0x004371C7 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:398:
+
+    396:         fprintf(file, " %s(", functionName);
+    397: 
+=>  398:         error = writeTreeNode(file, node->right);
+    399:         if (error != ERR_OK) return error;
+    400: 
+
+# 6 0x004370D8 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeTreeNode() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:382:
+
+    380:     else if(node->type == OP){
+    381: 
+=>  382:         ErrorCode error = writeTreeNode(file, node->left);
+    383:         if (error != ERR_OK) return error;
+    384: 
+
+# 7 0x00436E7E in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:342:
+
+    340:     fprintf(file, "$");
+    341: 
+=>  342:     ErrorCode error  = writeTreeNode(file, binaryTree->root);
+    343:     if(error != ERR_OK) return error;
+    344: 
+
+# 8 0x00437FCD in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:40:
+
+     38:     createDebugImage(&binaryTree, "binary-tree.png");
+     39: 
+=>   40:     error = writeBinaryTree(&binaryTree, "used-files/hello.tex");
+     41: 
+     42:     BinaryTree_t diffTree = {};
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 22 2026 14:56:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 22 2026 14:56:23
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00513374 (32-bit), Flags: Cmdre0, Thread: 0x58CC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00414FFE in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Kate/TX/TXLib.h:11343
+# 1 0x76B68F03 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x76B6D3CB in C:\WINDOWS\System32\msvcrt.dll: abort()
+
+# 3 0x00436D92 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:328:
+
+    326:     assert(file);
+    327: 
+=>  328:     VERIFY_OK(binaryTree, __func__);
+    329: 
+    330:     fprintf(file, "$");
+
+# 4 0x00438154 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:59:
+
+     57:     diffTree.root = diffTreeRoot;
+     58: 
+=>   59:     error = writeBinaryTree(&diffTree, diffFileReport);
+     60: 
+     61:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 22 2026 15:42:32, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 22 2026 15:42:38
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00513374 (32-bit), Flags: Cmdre0, Thread: 0x2C44 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00414FFE in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Kate/TX/TXLib.h:11343
+# 1 0x76B68F03 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x76B6D3CB in C:\WINDOWS\System32\msvcrt.dll: abort()
+
+# 3 0x00436D92 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:328:
+
+    326:     assert(file);
+    327: 
+=>  328:     VERIFY_OK(binaryTree, __func__);
+    329: 
+    330:     fprintf(file, "$");
+
+# 4 0x00438154 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:59:
+
+     57:     diffTree.root = diffTreeRoot;
+     58: 
+=>   59:     error = writeBinaryTree(&diffTree, diffFileReport);
+     60: 
+     61:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 22 2026 15:47:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 22 2026 15:47:25
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00513374 (32-bit), Flags: Cmdre0, Thread: 0x6B38 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00414FFE in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Kate/TX/TXLib.h:11343
+# 1 0x76B68F03 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x76B6D3CB in C:\WINDOWS\System32\msvcrt.dll: abort()
+
+# 3 0x00436D92 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:328:
+
+    326:     assert(file);
+    327: 
+=>  328:     VERIFY_OK(binaryTree, __func__);
+    329: 
+    330:     fprintf(file, "$");
+
+# 4 0x00438154 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:59:
+
+     57:     diffTree.root = diffTreeRoot;
+     58: 
+=>   59:     error = writeBinaryTree(&diffTree, diffFileReport);
+     60: 
+     61:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 22 2026 15:51:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 22 2026 15:51:30
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00513374 (32-bit), Flags: Cmdre0, Thread: 0x6378 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00414FFE in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Kate/TX/TXLib.h:11343
+# 1 0x76B68F03 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x76B6D3CB in C:\WINDOWS\System32\msvcrt.dll: abort()
+
+# 3 0x00436D92 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: writeBinaryTree() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/binary-tree.cpp:328:
+
+    326:     assert(file);
+    327: 
+=>  328:     VERIFY_OK(binaryTree, __func__);
+    329: 
+    330:     fprintf(file, "$");
+
+# 4 0x00438134 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:59:
+
+     57:     diffTree.root = diffTreeRoot;
+     58: 
+=>   59:     error = writeBinaryTree(&diffTree, diffFileReport);
+     60: 
+     61:     if(error != ERR_OK){
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 22 2026 15:59:50, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 22 2026 15:59:53
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------

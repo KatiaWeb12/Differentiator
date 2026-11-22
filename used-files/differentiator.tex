@@ -1,0 +1,90 @@
+\documentclass[12pt,a4paper]{extreport}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+\geometry{
+left=30mm,
+right=15mm,
+top=20mm,
+bottom=20mm
+}
+\onehalfspacing
+\title{\textbf{Дифференциатор}}
+\author{Екатерина Краева}
+\date{\today}
+
+\newenvironment{task}[1]
+{
+\par\noindent
+\textbf{Задача}
+\par\medskip
+}
+{
+\par\bigskip
+}
+\newenvironment{solution}
+{
+\par\noindent
+\textbf{Решение}
+\par\medskip}
+{
+\par\bigskip
+}
+
+\begin{document}
+
+\begin{task}{1}
+\[
+\frac{\sin({x}^{2})}{\ln(x + 1)}\]
+\end{task}
+
+\begin{solution}
+\[
+(x + 1)' = 1 + 0
+\]
+
+\[
+(\ln(x + 1))' = \frac{1 + 0}{x + 1}
+\]
+
+\[
+({x}^{2})' = 2 \cdot {x}^{2 - 1} \cdot 1
+\]
+
+\[
+(\sin({x}^{2}))' = \cos({x}^{2}) \cdot 2 \cdot {x}^{2 - 1} \cdot 1
+\]
+
+\[
+(\frac{\sin({x}^{2})}{\ln(x + 1)})' = \frac{\cos({x}^{2}) \cdot 2 \cdot {x}^{2 - 1} \cdot 1 \cdot \ln(x + 1) - \sin({x}^{2}) \cdot (\frac{1 + 0}{x + 1})}{\ln(x + 1) \cdot \ln(x + 1)}
+\]
+
+\[
+2 - 1 \longrightarrow 1
+\]
+
+\[
+{x}^{1} \longrightarrow x
+\]
+
+\[
+2 \cdot x \cdot 1 \longrightarrow 2 \cdot x
+\]
+
+\[
+1 + 0 \longrightarrow 1
+\]
+
+Итоговый ответ: \\ 
+\[
+\boxed{
+\frac{\cos({x}^{2}) \cdot 2 \cdot x \cdot \ln(x + 1) - \sin({x}^{2}) \cdot (\frac{1}{x + 1})}{\ln(x + 1) \cdot \ln(x + 1)}
+}
+\]
+\end{solution}
+
+\end{document}
