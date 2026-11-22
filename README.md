@@ -121,4 +121,4 @@ struct BinaryTree_t{
 <img src="diff-binary-tree.png" alt="Бинарное дерево1" width="1000" height="800">
 
 ### Пример сформированного отчёта
-<img src="report-example.png" alt="Пример отчёта" width="1000" height="800">
+<img src="report-example.png" alt="Пример отчёта" width="1000" height="1100">
