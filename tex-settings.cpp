@@ -44,16 +44,12 @@ ErrorCode formTexReportFile(files* usedFiles, BinaryTree_t* binaryTree, BinaryTr
 
     fprintf(diffFileReport, "%s", TEX_SETTINGS);
 
-    fprintf(diffFileReport, "\\begin{document}\n\n");
-
-    fprintf(diffFileReport, "\\begin{task}{1}\n");
+    fprintf(diffFileReport, "\\begin{document}\n\n\\begin{task}{1}\n");
 
     ErrorCode error = writeBinaryTree(binaryTree, diffFileReport, false);
     if(error != ERR_OK) return error;
 
-    fprintf(diffFileReport, "\\end{task}\n\n");
-
-    fprintf(diffFileReport, "\\begin{solution}\n");
+    fprintf(diffFileReport, "\\end{task}\n\n\\begin{solution}\n");
 
     diffTree->root = Diff(diffTree, binaryTree->root, diffFileReport);
 
@@ -73,6 +69,17 @@ ErrorCode formTexReportFile(files* usedFiles, BinaryTree_t* binaryTree, BinaryTr
     fprintf(diffFileReport, "\\end{document}");
 
     FCLOSE(diffFileReport);
+
+    char command[MAX_PATH_LENGTH + 200] = "";
+
+    sprintf(command,
+        "pdflatex -interaction=nonstopmode "
+        "-halt-on-error -file-line-error "
+        "-output-directory=\"./used-files\" "
+        "\"%s\"",
+        usedFiles->resultFile);
+
+    system(command);
 
     return ERR_OK;
 }

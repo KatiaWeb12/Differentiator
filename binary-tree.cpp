@@ -29,6 +29,7 @@ void initBinaryTree(BinaryTree_t* binaryTree){
 ErrorCode readBinaryTree(const char* fileName, BinaryTree_t* binaryTree){
 
     assert(fileName);
+    assert(binaryTree);
 
     FILE* file = fopen(fileName, "r");
     if (file == NULL) {
@@ -188,11 +189,7 @@ static ErrorCode formAfterOpenedBracket(BinaryTree_t* binaryTree, char** current
     ErrorCode error = createTreeNode(binaryTree, currentNode, type, value, &newNode);
     if (error != ERR_OK) return error;
 
-    if (delimiter == ')') {
-        *currentNode = (*currentNode)->parent;
-    }
-
-    if (delimiter != '\0') {
+    if (delimiter != '\0'){
         (*current)++;
     }
 
@@ -470,7 +467,6 @@ ErrorCode writeTreeNode(FILE* file, const Node* node, int parentPrecedence, int 
         fprintf(file, "%s(", functionName);
 
         ErrorCode error = writeTreeNode(file, node->left, 0, 0, false);
-
         if(error != ERR_OK) return error;
 
         fprintf(file, ")");
@@ -573,10 +569,16 @@ ErrorCode writeTreeNode(FILE* file, const Node* node, int parentPrecedence, int 
             return ERR_INVALID_ARGUMENT;
         }
 
+        bool needPowerParentheses = node->left->type == OP;
+
         fprintf(file, "{");
+
+        if(needPowerParentheses) fprintf(file, "(");
 
         ErrorCode error = writeTreeNode(file, node->left, 0, 0, false);
         if(error != ERR_OK) return error;
+
+        if(needPowerParentheses) fprintf(file, ")");
 
         fprintf(file, "}^{");
 
@@ -643,8 +645,8 @@ static const char* getTexInstruction(const double value){
         case CTG: return "\\cot";
         case LN:  return "\\ln";
         case EXP: return "\\exp";
-        case POW:    return "^";
-        case LOG:    return "\\log";
+        case POW: return "^";
+        case LOG: return "\\log";
 
         case ARCSIN: return "\\arcsin";
         case ARCCOS: return "\\arccos";

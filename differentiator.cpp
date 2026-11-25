@@ -38,6 +38,7 @@ int main(int argc, char* argv[]){
 Node* Diff(BinaryTree_t* binaryTree, Node* node, FILE* file){
 
     assert(binaryTree);
+    assert(file);
 
     Node* result = NULL;
 

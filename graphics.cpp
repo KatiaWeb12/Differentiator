@@ -83,7 +83,6 @@ static const char* getNodeColor(const NodeType type){
     return NULL;
 }
 
-
 static const char* getOpNodeValueForPicture(const double value){
 
     switch((int)value){
@@ -110,8 +109,9 @@ static const char* getOpNodeValueForPicture(const double value){
 
         default: return "UNKNOWN";
     }
-}
 
+    return NULL;
+}
 
 static const char* getNodeForPicture(const NodeType type){
 

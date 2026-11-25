@@ -1470,3 +1470,62 @@ Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator
 Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400], Instance: 0x00517374 (32-bit), Flags: Cmdre0, Thread: 0x5730 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00414FFE in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: (anonymous namespace)::TX::_txOnSignal() at C:/Users/Kate/TX/TXLib.h:11343
+# 1 0x76B68F03 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x76B6D3CB in C:\WINDOWS\System32\msvcrt.dll: abort()
+
+# 3 0x00439921 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: Diff() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:43:
+
+     41:     assert(file);
+     42: 
+=>   43:     VERIFY_OK(binaryTree, __func__);
+     44: 
+     45:     Node* result = NULL;
+
+# 4 0x00438BDE in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: formTexReportFile() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/tex-settings.cpp:56:
+
+     54:     fprintf(diffFileReport, "\\end{task}\n\n\\begin{solution}\n");
+     55: 
+=>   56:     diffTree->root = Diff(diffTree, binaryTree->root, diffFileReport);
+     57: 
+     58:     simplifyDiffTree(diffTree, diffTree->root, diffFileReport);
+
+# 5 0x00439860 in C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe: main() at C:/Users/Kate/Desktop/DED-C_Tasks/Task 9 differentiator/differentiator.cpp:28:
+
+     26:     initBinaryTree(&diffTree);
+     27: 
+=>   28:     formTexReportFile(&usedFiles, &binaryTree, &diffTree);
+     29: 
+     30:     createDebugImage(&diffTree, "diff-binary-tree.png");
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 175, Date: 2025-12-31 23:02:50 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Kate\TX\TXLib.h
+Compiled:	Nov 24 2026 16:04:00, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 24 2026 16:04:10
+
+Run file:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator\differentiator.exe
+Directory:	C:\Users\Kate\Desktop\DED-C_Tasks\Task 9 differentiator
+
+--------------------------------------------------

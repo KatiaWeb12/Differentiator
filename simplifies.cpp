@@ -70,9 +70,29 @@ void simplifyDiffTree(BinaryTree_t* tree, Node* node, FILE* file){
         }
     }
 
-    // 0 * x = 0
-
     if((int)node->value == MUL){
+
+        // x * x = x^2
+
+        if(areEqualTrees(left, right)){
+
+            writeSimplificationBefore(file, node);
+
+            destroyDiffSubtree(tree, right->right);
+
+            node->value = POW;
+
+            right->type = MY_CONST;
+            right->value = 2;
+            right->left = NULL;
+            right->right = NULL;
+
+            writeSimplificationAfter(file, node);
+
+            return;
+        }
+
+        // 0 * x = 0
 
         if((left->type == MY_CONST && (int)left->value == 0) ||
            (right->type == MY_CONST && (int)right->value == 0)){
@@ -119,9 +139,9 @@ void simplifyDiffTree(BinaryTree_t* tree, Node* node, FILE* file){
         }
     }
 
-    // x + x = 2 * x
-
     if((int)node->value == ADD){
+
+        // x + x = 2 * x
 
         if(areEqualTrees(left, right)){
 
@@ -130,17 +150,19 @@ void simplifyDiffTree(BinaryTree_t* tree, Node* node, FILE* file){
             destroyDiffSubtree(tree, left->left);
             destroyDiffSubtree(tree, left->right);
 
+            node->value = MUL;
+
             left->type = MY_CONST;
             left->value = 2;
             left->left = NULL;
             left->right = NULL;
 
-            node->value = MUL;
-
             writeSimplificationAfter(file, node);
 
             return;
         }
+
+        // 0 + x = x
 
         if(left->type == MY_CONST && (int)left->value == 0){
 
